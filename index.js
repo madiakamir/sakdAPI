@@ -1,8 +1,14 @@
 const Koa = require('koa');
-const router = require('./src/users/routes');
+const json = require('koa-json');
+const router = require('./src/app/index');
+require('dotenv').config();
+
+const PORT = process.env.PORT;
 const app = new Koa();
 
+
+app.use(json());
 app.use(router);
 
 
-app.listen(5000);
+app.listen(PORT, () => console.log(`server start on ${PORT}`));
